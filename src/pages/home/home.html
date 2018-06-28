@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons right>
+          <button ion-button (click)="refresh()">
+            <ion-icon name="refresh"></ion-icon>
+          </button>
+        </ion-buttons>
+        <ion-title class="center">        
+          {{user.name}}'s GoCommunity Feed
+          <ion-icon name="easel"></ion-icon>
+        </ion-title>
+      </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p class="center error" [hidden]="error == ''"><strong>{{error}}</strong></p>
+
+  <ion-label class="title">Your projects</ion-label>
+  <ion-item [hidden]="ownData.length > 0" text-wrap>
+    <p><strong>You haven't started any projects!</strong></p>
+  </ion-item>
+  <button ion-item (click)="visitProject(p)" *ngFor="let p of ownData" text-wrap>
+    <p> <ion-icon name="cube" class="pad"></ion-icon>
+      <strong> <span class="projtitle">{{p.name}}</span> - 
+        <span class="projmoney">{{p.progress}}€</span> / 
+        <span class="projmoney">{{p.goal}}€</span> - 
+        Ends on <span class="projdate">{{p.endsOn}}</span></strong></p>
+  </button>
+
+  <ion-label class="title">Followed projects</ion-label>
+  <ion-item [hidden]="followData.length > 0" text-wrap>
+    <p><strong>You haven't followed any projects!</strong></p>
+  </ion-item>
+  <button ion-item (click)="visitProject(p)" *ngFor="let p of followData" text-wrap>
+    <p> <ion-icon name="cube" class="pad"></ion-icon>
+      <strong> <span class="projtitle">{{p.name}}</span> - 
+        <span class="projmoney">{{p.progress}}€</span> / 
+        <span class="projmoney">{{p.goal}}€</span> - 
+        Ends on <span class="projdate">{{p.endsOn}}</span></strong></p>
+  </button>
+
+  <ion-label class="title">Popular projects</ion-label>
+  <ion-item [hidden]="popularData.length > 0" text-wrap>
+    <p><strong>There aren't any other projects!</strong></p>
+  </ion-item>
+  <button ion-item (click)="visitProject(p)" *ngFor="let p of popularData" text-wrap>
+    <p> <ion-icon name="cube" class="pad"></ion-icon>
+      <strong> <span class="projtitle">{{p.name}}</span> - 
+        <span class="projmoney">{{p.progress}}€</span> / 
+        <span class="projmoney">{{p.goal}}€</span> - 
+        Ends on <span class="projdate">{{p.endsOn}}</span></strong></p>
+  </button>
+</ion-content>
